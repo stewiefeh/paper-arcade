@@ -613,8 +613,8 @@ main {
   animation: sticker-wobble 5s ease-in-out infinite;
 }
 
-.hero__sticker span:nth-child(1) { transform: translateY(-11px) rotate(-14deg); }
-.hero__sticker span:nth-child(3) { transform: translateY(11px) rotate(8deg); }
+.hero__sticker span:nth-child(1) { transform: translateY(5px) rotate(-10deg); }
+.hero__sticker span:nth-child(3) { transform: translateY(-5px) rotate(6deg); }
 
 @keyframes sticker-wobble {
   0%, 100% { transform: rotate(10deg); }
