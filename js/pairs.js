@@ -63,8 +63,7 @@
     });
     sheetEl.innerHTML = '';
     sheetEl.setAttribute('data-size', sizeKey);
-    sheetEl.style.gridTemplateColumns = 'repeat(' + spec.cols + ', 1fr)';
-    sheetEl.style.width = 'fit-content';
+    /* column tracks come from the stylesheet (data-size rules) */
 
     deck.forEach(function (card) {
       var btn = document.createElement('button');
