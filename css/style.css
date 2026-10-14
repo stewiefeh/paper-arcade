@@ -1532,8 +1532,11 @@ main {
 
 .drift-tile {
   position: absolute;
+  left: 0;
+  top: 0;
   width: calc((100% - 30px) / 4);
   height: calc((100% - 30px) / 4);
+  transform: translate(calc(var(--cx, 0) * (100% + 10px)), calc(var(--cy, 0) * (100% + 10px)));
   display: grid;
   place-items: center;
   border: var(--rule);
@@ -1577,6 +1580,39 @@ main {
 .drift-tile[data-val="512"]  { background: var(--ink); color: var(--paper); font-size: clamp(18px, 4vw, 28px); }
 .drift-tile[data-val="1024"] { background: var(--ink); color: var(--accent); font-size: clamp(15px, 3.4vw, 24px); border-width: 3px; }
 .drift-tile[data-val="2048"] { background: var(--accent); color: var(--paper); font-size: clamp(14px, 3.2vw, 22px); border-width: 3px; box-shadow: 4px 4px 0 var(--ink), 0 0 0 4px var(--mustard); }
+
+
+/* ---------- drift slide pad: the press levers ---------- */
+
+.drift-dpad {
+  display: grid;
+  grid-template-columns: repeat(3, 56px);
+  grid-template-rows: repeat(2, 44px);
+  gap: 8px;
+  justify-content: center;
+  margin: 18px auto 0;
+}
+
+.drift-dpad__btn {
+  border: var(--rule);
+  border-radius: var(--radius-small);
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-mono);
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 2px 2px 0 var(--ink);
+  transition: transform 100ms var(--ease), box-shadow 100ms var(--ease);
+}
+
+.drift-dpad__btn:hover { transform: translate(-1px, -1px); box-shadow: 3px 3px 0 var(--ink); }
+.drift-dpad__btn:active { transform: translate(1px, 1px); box-shadow: 1px 1px 0 var(--ink); }
+.drift-dpad__btn:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+.drift-dpad__btn--up { grid-column: 2; grid-row: 1; }
+.drift-dpad__btn--left { grid-column: 1; grid-row: 2; }
+.drift-dpad__btn--down { grid-column: 2; grid-row: 2; }
+.drift-dpad__btn--right { grid-column: 3; grid-row: 2; }
 
 /* ---------- minefield ---------- */
 

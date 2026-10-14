@@ -86,6 +86,7 @@
             <span class="minefield-counter__value" id="clock">0:00</span>
           </div>
         </div>
+        <button class="btn btn--ghost btn--small" type="button" id="flag-mode" aria-pressed="false">Flag mode: off</button>
         <div class="minefield-sheet" id="sheet" role="grid" aria-label="Minefield grid"></div>
         <div class="board-overlay" id="mine-overlay" hidden>
           <p class="board-overlay__title" id="mine-overlay-title">Boom</p>
@@ -115,6 +116,7 @@
             <div><dt>Broadside</dt><dd id="best-large">&ndash;</dd></div>
           </dl>
           <p class="panel__fine">A time counts when the sheet clears with every mine flagged or cleared.</p>
+          <p class="panel__fine" id="mine-sheets"></p>
         </div>
       </aside>
     </div>

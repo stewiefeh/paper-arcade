@@ -38,6 +38,8 @@
   var clearedSheets = store.get('minefield-cleared', 0);
 
   renderBests();
+  var sheetsLabel = $('#mine-sheets');
+  if (sheetsLabel) sheetsLabel.textContent = 'Sheets cleared: ' + clearedSheets;
 
   /* ---------- field ---------- */
 
@@ -205,7 +207,8 @@
       faceEl.textContent = 'B)';
       clearedSheets++;
       store.set('minefield-cleared', clearedSheets);
-      $('#mine-sheets', document).textContent = 'Sheets cleared: ' + clearedSheets;
+      var sheetsEl = $('#mine-sheets');
+      if (sheetsEl) sheetsEl.textContent = 'Sheets cleared: ' + clearedSheets;
       /* flag the leftovers so the final sheet looks done */
       grid.forEach(function (c) {
         if (c.mine && !c.flagged) {
@@ -269,6 +272,7 @@
 
   var pressTimer = null;
   var longPressed = false;
+  var flagMode = false;
 
   sheetEl.addEventListener('click', function (e) {
     var cell = e.target.closest('.mine-cell');
@@ -284,6 +288,8 @@
     }
     if (c.revealed) {
       chord(c);
+    } else if (flagMode) {
+      toggleFlag(c);
     } else {
       reveal(c);
     }
@@ -333,6 +339,12 @@
   });
 
   faceEl.addEventListener('click', buildField);
+  $('#flag-mode').addEventListener('click', function () {
+    flagMode = !flagMode;
+    this.textContent = flagMode ? 'Flag mode: on' : 'Flag mode: off';
+    this.setAttribute('aria-pressed', flagMode ? 'true' : 'false');
+    PA.sound.key();
+  });
   $('#mine-again').addEventListener('click', buildField);
 
   buildField();

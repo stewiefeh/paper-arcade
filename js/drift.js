@@ -35,11 +35,14 @@
   $('#stat-runs').textContent = runsFinished;
   $('#stat-top').textContent = topPlate ? topPlate : '\u2013';
 
-  /* ---------- geometry ---------- */
-
-  function pos(x, y) {
-    var step = 100 / SIZE;
-    return { x: y * step, y: x * step };
+  /* ---------- geometry ----------
+     A tile lives at row x, column y. The stylesheet drives the
+     position with --cx/--cy custom properties: translate percentages
+     are measured against the tile's own box, so one cell of travel
+     is exactly (100% of the tile + one 10px gap). */
+  function placeAt(t) {
+    t.el.style.setProperty('--cx', t.y);
+    t.el.style.setProperty('--cy', t.x);
   }
 
   function cellAt(x, y) {
@@ -57,17 +60,15 @@
     el.className = 'drift-tile' + (isNew ? ' is-new' : '');
     el.textContent = val;
     el.setAttribute('data-val', val);
-    var p = pos(x, y);
-    el.style.transform = 'translate(' + p.x + '%, ' + p.y + '%)';
     tilesEl.appendChild(el);
     t.el = el;
+    placeAt(t);
     tiles.push(t);
     return t;
   }
 
   function placeTile(t) {
-    var p = pos(t.x, t.y);
-    t.el.style.transform = 'translate(' + p.x + '%, ' + p.y + '%)';
+    placeAt(t);
   }
 
   function removeTile(t) {
@@ -119,38 +120,52 @@
     var gained = 0;
     var merged = [];
 
-    lineCoordinates(dir).forEach(function (line) {
-      var dx = stepFor(dir)[0];
-      var dy = stepFor(dir)[1];
-      var slot = null; /* value of the last settled cell, or a tile object */
+    /* one step of travel per direction, in grid coordinates
+       (x is the row, y is the column) */
+    var v;
+    if (dir === 'left')       v = { dx: 0, dy: -1 };
+    else if (dir === 'right') v = { dx: 0, dy: 1 };
+    else if (dir === 'up')    v = { dx: -1, dy: 0 };
+    else                      v = { dx: 1, dy: 0 };
 
-      line.forEach(function (pair, idx) {
-        var x = pair[0];
-        var y = pair[1];
+    /* walk the leading side first so a tile always settles
+       before the one behind it arrives */
+    var xs = [0, 1, 2, 3];
+    var ys = [0, 1, 2, 3];
+    if (v.dx === 1) xs.reverse();
+    if (v.dy === 1) ys.reverse();
+
+    xs.forEach(function (x) {
+      ys.forEach(function (y) {
         var t = cellAt(x, y);
         if (!t) return;
-        /* find the destination: walk back along the line while empty */
         var nx = x;
         var ny = y;
         while (true) {
-          var tx = nx - dx;
-          var ty = ny - dy;
+          var tx = nx + v.dx;
+          var ty = ny + v.dy;
           if (tx < 0 || ty < 0 || tx >= SIZE || ty >= SIZE) break;
           if (cellAt(tx, ty)) break;
           nx = tx;
           ny = ty;
         }
-        var ahead = (nx - dx >= 0 && nx - dx < SIZE && ny - dy >= 0 && ny - dy < SIZE)
-          ? cellAt(nx - dx, ny - dy) : null;
+        var ax = nx + v.dx;
+        var ay = ny + v.dy;
+        var ahead = (ax >= 0 && ay >= 0 && ax < SIZE && ay < SIZE)
+          ? cellAt(ax, ay) : null;
 
         if (ahead && ahead.val === t.val && !ahead.lockedMerge) {
-          /* merge into the tile ahead */
           ahead.val *= 2;
           ahead.lockedMerge = true;
           gained += ahead.val;
           ahead.el.textContent = ahead.val;
           ahead.el.setAttribute('data-val', ahead.val);
-          removeTile(t);
+          t.x = ax;
+          t.y = ay;
+          placeTile(t);
+          var fading = t.el;
+          tiles = tiles.filter(function (o) { return o !== t; });
+          setTimeout(function () { fading.remove(); }, 120);
           moved = true;
           merged.push(ahead);
         } else if (nx !== x || ny !== y) {
@@ -338,6 +353,14 @@
       startRun();
     } else {
       overlay.hidden = true;
+    }
+  });
+
+  /* on-screen slide controls for anyone not on the keyboard */
+  [['dpad-up', 'up'], ['dpad-left', 'left'], ['dpad-down', 'down'], ['dpad-right', 'right']].forEach(function (pair) {
+    var b = document.getElementById(pair[0]);
+    if (b) {
+      b.addEventListener('click', function () { move(pair[1]); });
     }
   });
 
