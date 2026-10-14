@@ -543,6 +543,8 @@ main {
 .hero__line {
   display: block;
   overflow: hidden;
+  padding-bottom: 0.16em;
+  margin-bottom: -0.16em;
 }
 
 .hero__line--indent {
@@ -595,8 +597,8 @@ main {
   right: 0;
   display: grid;
   place-items: center;
-  width: 130px;
-  height: 130px;
+  width: 148px;
+  height: 148px;
   background: var(--mustard);
   border: var(--rule-thick);
   border-radius: 50%;
@@ -605,12 +607,14 @@ main {
   font-weight: 700;
   font-size: 13px;
   letter-spacing: 0.1em;
+  line-height: 1.1;
+  color: #191510;
   z-index: 2;
   animation: sticker-wobble 5s ease-in-out infinite;
 }
 
-.hero__sticker span:nth-child(1) { transform: translateY(-17px) rotate(-14deg); }
-.hero__sticker span:nth-child(3) { transform: translateY(17px) rotate(8deg); }
+.hero__sticker span:nth-child(1) { transform: translateY(-11px) rotate(-14deg); }
+.hero__sticker span:nth-child(3) { transform: translateY(11px) rotate(8deg); }
 
 @keyframes sticker-wobble {
   0%, 100% { transform: rotate(10deg); }
@@ -2044,6 +2048,15 @@ main {
 }
 
 /* ---------- responsive masthead ---------- */
+
+/* narrow or zoomed desktop windows: tighten the row so nothing clips */
+@media (min-width: 941px) and (max-width: 1260px) {
+  .masthead { gap: 12px; }
+  .site-nav { gap: 10px; }
+  .site-nav a { padding: 8px 7px; font-size: 12px; letter-spacing: 0.04em; }
+  .site-nav .btn--small { padding: 10px 12px; font-size: 12px; }
+  .masthead .btn--small { padding: 10px 12px; font-size: 12px; }
+}
 
 @media (max-width: 940px) {
   .nav-toggle { display: block; }
