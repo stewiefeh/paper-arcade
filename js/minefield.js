@@ -9,6 +9,7 @@
 
   var PA = window.PA;
   var $ = PA.$;
+  var $$ = PA.$$;
   var store = PA.store;
 
   var SIZES = {

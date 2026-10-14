@@ -9,6 +9,7 @@
 
   var PA = window.PA;
   var $ = PA.$;
+  var $$ = PA.$$;
   var store = PA.store;
 
   var TONES = [261.63, 329.63, 392.0, 523.25]; /* C4, E4, G4, C5 */
