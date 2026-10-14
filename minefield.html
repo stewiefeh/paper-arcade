@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Minefield: three sheets, hidden mines | Paper Arcade</title>
+  <meta name="description" content="Minefield is Paper Arcade's logic game. Three paper sizes, hidden mines, flag what you suspect, clear the rest. First tap is always safe and best times stay on your machine.">
+  <meta property="og:title" content="Minefield: three sheets, hidden mines | Paper Arcade">
+  <meta property="og:description" content="Three paper sizes, hidden mines, first tap always safe.">
+  <meta name="theme-color" content="#f3eee3">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,900;1,9..144,400&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+</head>
+<body data-page="minefield">
+  <a class="skip" href="#main">Skip to content</a>
+
+  <div class="ticker ticker--thin" aria-hidden="true">
+    <div class="ticker__track">
+      <span>MINEFIELD PRESS NO. 3</span><i>&#9733;</i>
+      <span>THE FIRST TAP IS ALWAYS SAFE</span><i>&#9733;</i>
+      <span>FLAGS ARE A RIGHT, NOT A PROMISE</span><i>&#9733;</i>
+      <span>BEST TIMES STAY IN YOUR BROWSER</span><i>&#9733;</i>
+      <span>MINEFIELD PRESS NO. 3</span><i>&#9733;</i>
+      <span>THE FIRST TAP IS ALWAYS SAFE</span><i>&#9733;</i>
+      <span>FLAGS ARE A RIGHT, NOT A PROMISE</span><i>&#9733;</i>
+      <span>BEST TIMES STAY IN YOUR BROWSER</span><i>&#9733;</i>
+    </div>
+  </div>
+
+  <header class="masthead">
+    <a class="brand" href="index.html" aria-label="Paper Arcade home">
+      <span class="brand__mark" aria-hidden="true">PA</span>
+      <span class="brand__name">Paper<em>Arcade</em></span>
+    </a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" data-nav-toggle>
+      <span class="nav-toggle__line"></span>
+      <span class="visually-hidden">Menu</span>
+    </button>
+    <nav class="site-nav" id="site-nav" aria-label="Primary" data-nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="lexicon.html">Lexicon</a></li>
+        <li><a href="drift.html">Drift</a></li>
+        <li><a href="minefield.html" aria-current="page">Minefield</a></li>
+        <li><a href="pairs.html">Pairs</a></li>
+        <li><a href="signal.html">Signal</a></li>
+        <li><a href="stats.html">Stats</a></li>
+        <li><a href="about.html">Colophon</a></li>
+      </ul>
+      <button class="btn btn--ghost btn--small" type="button" data-theme-toggle>
+        <span class="btn__dot" aria-hidden="true"></span><span data-theme-label>Ink mode</span>
+      </button>
+    </nav>
+  </header>
+
+  <main id="main" class="game-main">
+    <header class="game-header" data-reveal>
+      <p class="game-header__kicker">Press No. 3 &mdash; The proof room</p>
+      <h1>Minefield</h1>
+      <p class="game-header__lede">
+        Three paper sizes, each seeded with mines the press hides after your
+        first tap, so the opener never kills you. Numbers count the mines
+        touching a square. Flag what you suspect, clear the rest, and the
+        sheet goes to the good bin.
+      </p>
+      <div class="minefield-picker" role="group" aria-label="Difficulty">
+        <button class="btn btn--primary btn--small" type="button" data-size="small" aria-pressed="true">Small sheet</button>
+        <button class="btn btn--ghost btn--small" type="button" data-size="medium" aria-pressed="false">Standard sheet</button>
+        <button class="btn btn--ghost btn--small" type="button" data-size="large" aria-pressed="false">Broadside</button>
+      </div>
+    </header>
+
+    <div class="game-layout game-layout--board-first">
+      <section class="minefield-stage" aria-label="Minefield board">
+        <div class="minefield-hud">
+          <div class="minefield-counter">
+            <span class="minefield-counter__label">Mines left</span>
+            <span class="minefield-counter__value" id="mines-left">0</span>
+          </div>
+          <button class="minefield-reset" type="button" id="reset" aria-label="Start a new sheet">:)</button>
+          <div class="minefield-counter">
+            <span class="minefield-counter__label">Clock</span>
+            <span class="minefield-counter__value" id="clock">0:00</span>
+          </div>
+        </div>
+        <div class="minefield-sheet" id="sheet" role="grid" aria-label="Minefield grid"></div>
+        <div class="board-overlay" id="mine-overlay" hidden>
+          <p class="board-overlay__title" id="mine-overlay-title">Boom</p>
+          <p class="board-overlay__word" id="mine-overlay-time">Time 0:00</p>
+          <p class="board-overlay__note" id="mine-overlay-note"></p>
+          <div class="board-overlay__actions">
+            <button class="btn btn--primary" type="button" id="mine-again">Print a new sheet</button>
+          </div>
+        </div>
+      </section>
+
+      <aside class="game-side" aria-label="Minefield help and record">
+        <div class="panel">
+          <h2 class="panel__title">The controls</h2>
+          <ul class="panel__list">
+            <li><b>Tap or click</b> a covered square to clear it.</li>
+            <li><b>Right-click</b> plants or pulls a flag. On touch, press and hold.</li>
+            <li><b>Tap a cleared number</b> once its flags match to clear the neighbors around it.</li>
+            <li><b>The face</b> in the middle starts a fresh sheet whenever.</li>
+          </ul>
+        </div>
+        <div class="panel">
+          <h2 class="panel__title">Best times</h2>
+          <dl class="stat-strip stat-strip--stack">
+            <div><dt>Small sheet</dt><dd id="best-small">&ndash;</dd></div>
+            <div><dt>Standard sheet</dt><dd id="best-medium">&ndash;</dd></div>
+            <div><dt>Broadside</dt><dd id="best-large">&ndash;</dd></div>
+          </dl>
+          <p class="panel__fine">A time counts when the sheet clears with every mine flagged or cleared.</p>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <footer class="colophon">
+    <div class="colophon__brand">
+      <span class="brand__mark" aria-hidden="true">PA</span>
+      <p>Paper Arcade. Five games, one press sheet, no quarterly report.</p>
+    </div>
+    <nav class="colophon__nav" aria-label="Footer">
+      <a href="index.html">Home</a>
+      <a href="stats.html">Your stats</a>
+      <a href="about.html">Colophon</a>
+      <a href="https://github.com/stewiefeh/paper-arcade" rel="noopener" target="_blank">Source on GitHub</a>
+    </nav>
+    <p class="colophon__fine">Set in Fraunces and Space Mono. Hosted on Cloudflare Pages. Built by hand, 2026.</p>
+  </footer>
+
+  <script src="js/core.js"></script>
+  <script src="js/minefield.js"></script>
+</body>
+</html>

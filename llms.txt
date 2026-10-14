@@ -1,0 +1,24 @@
+# Paper Arcade
+
+A collection of five hand-built browser games presented as a 1960s print shop.
+Static site: hand-written HTML, CSS, and JavaScript. No frameworks, no build
+step, no backend, no analytics, no ads.
+
+## Pages
+- index.html: home, game lineup, house rules
+- lexicon.html: daily five-letter word game (Wordle-like), with free play mode
+- drift.html: 2048-style sliding tile merge puzzle with undo
+- minefield.html: minesweeper with three sheet sizes and first-click safety
+- pairs.html: memory match with two sheet sizes
+- signal.html: sequence memory with tones and strict mode
+- stats.html: local-only record desk reading localStorage
+- about.html: colophon with design system, motion rules, changelog
+
+## Design language
+Paper #f3eee3, ink #191510, riso orange #e8511c, press green #2b6e62,
+mustard #d9a514. Fonts: Fraunces (display) and Space Mono (UI). Hard offset
+shadows, 2px rules, halftone paper texture. "Ink mode" is a dark variant.
+
+## Privacy
+All scores are stored in the player's browser via localStorage under the
+"pa:" prefix. Nothing is uploaded, nothing is tracked.

@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Signal: echo the tones | Paper Arcade</title>
+  <meta name="description" content="Signal is Paper Arcade's sequence-memory game. The machine taps a tone, you echo it back, and each round the sequence grows and the tempo climbs. Strict mode for the brave, best level saved locally.">
+  <meta property="og:title" content="Signal: echo the tones | Paper Arcade">
+  <meta property="og:description" content="The machine taps a tone, you echo it back.">
+  <meta name="theme-color" content="#f3eee3">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,900;1,9..144,400&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+</head>
+<body data-page="signal">
+  <a class="skip" href="#main">Skip to content</a>
+
+  <div class="ticker ticker--thin" aria-hidden="true">
+    <div class="ticker__track">
+      <span>SIGNAL PRESS NO. 5</span><i>&#9733;</i>
+      <span>ECHO THE SEQUENCE BACK</span><i>&#9733;</i>
+      <span>EACH ROUND ADDS A NOTE</span><i>&#9733;</i>
+      <span>STRICT MODE FORGIVES NOTHING</span><i>&#9733;</i>
+      <span>SIGNAL PRESS NO. 5</span><i>&#9733;</i>
+      <span>ECHO THE SEQUENCE BACK</span><i>&#9733;</i>
+      <span>EACH ROUND ADDS A NOTE</span><i>&#9733;</i>
+      <span>STRICT MODE FORGIVES NOTHING</span><i>&#9733;</i>
+    </div>
+  </div>
+
+  <header class="masthead">
+    <a class="brand" href="index.html" aria-label="Paper Arcade home">
+      <span class="brand__mark" aria-hidden="true">PA</span>
+      <span class="brand__name">Paper<em>Arcade</em></span>
+    </a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" data-nav-toggle>
+      <span class="nav-toggle__line"></span>
+      <span class="visually-hidden">Menu</span>
+    </button>
+    <nav class="site-nav" id="site-nav" aria-label="Primary" data-nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="lexicon.html">Lexicon</a></li>
+        <li><a href="drift.html">Drift</a></li>
+        <li><a href="minefield.html">Minefield</a></li>
+        <li><a href="pairs.html">Pairs</a></li>
+        <li><a href="signal.html" aria-current="page">Signal</a></li>
+        <li><a href="stats.html">Stats</a></li>
+        <li><a href="about.html">Colophon</a></li>
+      </ul>
+      <button class="btn btn--ghost btn--small" type="button" data-theme-toggle>
+        <span class="btn__dot" aria-hidden="true"></span><span data-theme-label>Ink mode</span>
+      </button>
+    </nav>
+  </header>
+
+  <main id="main" class="game-main">
+    <header class="game-header" data-reveal>
+      <p class="game-header__kicker">Press No. 5 &mdash; The tone bench</p>
+      <h1>Signal</h1>
+      <p class="game-header__lede">
+        The bench taps a tone, then waits for you to tap it back. Each round
+        adds one more tone to the line and shaves the tempo a little. Miss a
+        tap and the run ends, unless strict mode is off, which forgives the
+        mistake and replays the line. Levels past twelve are considered
+        bragging material.
+      </p>
+      <div class="signal-tools">
+        <label class="toggle">
+          <input type="checkbox" id="strict">
+          <span class="toggle__track" aria-hidden="true"><span class="toggle__thumb"></span></span>
+          <span class="toggle__label">Strict mode</span>
+        </label>
+        <button class="btn btn--primary btn--small" type="button" id="start">Start the bench</button>
+      </div>
+    </header>
+
+    <div class="game-layout game-layout--board-first">
+      <section class="signal-stage" aria-label="Signal board">
+        <div class="signal-hud">
+          <div class="drift-score">
+            <span class="drift-score__label">Round</span>
+            <span class="drift-score__value" id="level">0</span>
+          </div>
+          <div class="drift-score">
+            <span class="drift-score__label">Best</span>
+            <span class="drift-score__value" id="best">0</span>
+          </div>
+          <div class="drift-score">
+            <span class="drift-score__label">Status</span>
+            <span class="drift-score__value drift-score__value--small" id="status">Press start</span>
+          </div>
+        </div>
+        <div class="signal-pads" id="pads">
+          <button class="signal-pad signal-pad--1" type="button" data-pad="0" aria-label="Pad one, low tone"></button>
+          <button class="signal-pad signal-pad--2" type="button" data-pad="1" aria-label="Pad two, second tone"></button>
+          <button class="signal-pad signal-pad--3" type="button" data-pad="2" aria-label="Pad three, third tone"></button>
+          <button class="signal-pad signal-pad--4" type="button" data-pad="3" aria-label="Pad four, high tone"></button>
+        </div>
+        <div class="board-overlay" id="signal-overlay" hidden>
+          <p class="board-overlay__title">Signal lost</p>
+          <p class="board-overlay__word" id="signal-overlay-score">Round 0</p>
+          <p class="board-overlay__note" id="signal-overlay-note"></p>
+          <div class="board-overlay__actions">
+            <button class="btn btn--primary" type="button" id="signal-again">Run it again</button>
+          </div>
+        </div>
+      </section>
+
+      <aside class="game-side" aria-label="Signal help and record">
+        <div class="panel">
+          <h2 class="panel__title">The bench</h2>
+          <ul class="panel__list">
+            <li><b>Watch the line</b> play, then tap the same order back.</li>
+            <li><b>Keys 1 to 4</b> tap the pads without a mouse.</li>
+            <li><b>Strict mode</b> ends the run on any miss. Off, it replays the line once and lets you retry.</li>
+            <li><b>The tempo climbs</b> every few rounds, so listen faster as you go.</li>
+          </ul>
+        </div>
+        <div class="panel">
+          <h2 class="panel__title">Today's record</h2>
+          <dl class="stat-strip">
+            <div><dt>Best round</dt><dd id="stat-best">0</dd></div>
+            <div><dt>Runs</dt><dd id="stat-runs">0</dd></div>
+            <div><dt>Strict wins</dt><dd id="stat-strict">0</dd></div>
+          </dl>
+          <p class="panel__fine">A run counts when the line finally wins, strict or not.</p>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <footer class="colophon">
+    <div class="colophon__brand">
+      <span class="brand__mark" aria-hidden="true">PA</span>
+      <p>Paper Arcade. Five games, one press sheet, no quarterly report.</p>
+    </div>
+    <nav class="colophon__nav" aria-label="Footer">
+      <a href="index.html">Home</a>
+      <a href="stats.html">Your stats</a>
+      <a href="about.html">Colophon</a>
+      <a href="https://github.com/stewiefeh/paper-arcade" rel="noopener" target="_blank">Source on GitHub</a>
+    </nav>
+    <p class="colophon__fine">Set in Fraunces and Space Mono. Hosted on Cloudflare Pages. Built by hand, 2026.</p>
+  </footer>
+
+  <script src="js/core.js"></script>
+  <script src="js/signal.js"></script>
+</body>
+</html>

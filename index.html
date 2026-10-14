@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Paper Arcade: Five Small Games, One Big Press Sheet</title>
+  <meta name="description" content="Paper Arcade is a collection of five hand-built browser games styled like a 1960s print shop: Lexicon, Drift, Minefield, Pairs, and Signal. Free to play, no ads, your scores stay on your machine.">
+  <meta property="og:title" content="Paper Arcade: Five Small Games, One Big Press Sheet">
+  <meta property="og:description" content="Five hand-built browser games styled like a 1960s print shop. Free to play, no ads, scores stay local.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Paper Arcade">
+  <meta name="theme-color" content="#f3eee3">
+  <meta name="color-scheme" content="light">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,900;1,9..144,400&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Paper Arcade",
+    "description": "Five hand-built browser games styled like a 1960s print shop.",
+    "url": "https://paper-arcade.pages.dev",
+    "hasPart": [
+      { "@type": "VideoGame", "name": "Lexicon", "genre": "Word game", "url": "https://paper-arcade.pages.dev/lexicon.html" },
+      { "@type": "VideoGame", "name": "Drift", "genre": "Puzzle", "url": "https://paper-arcade.pages.dev/drift.html" },
+      { "@type": "VideoGame", "name": "Minefield", "genre": "Logic", "url": "https://paper-arcade.pages.dev/minefield.html" },
+      { "@type": "VideoGame", "name": "Pairs", "genre": "Memory", "url": "https://paper-arcade.pages.dev/pairs.html" },
+      { "@type": "VideoGame", "name": "Signal", "genre": "Memory", "url": "https://paper-arcade.pages.dev/signal.html" }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker__track">
+      <span>TODAY'S LEXICON WORD IS READY</span><i>★</i>
+      <span>DRIFT YOUR TILES TO 2048</span><i>★</i>
+      <span>NO ADS · NO TRACKERS · NO ACCOUNTS</span><i>★</i>
+      <span>SCORES LIVE IN YOUR BROWSER ONLY</span><i>★</i>
+      <span>PRINTED IN INK &amp; SIGNAL ORANGE</span><i>★</i>
+      <span>TODAY'S LEXICON WORD IS READY</span><i>★</i>
+      <span>DRIFT YOUR TILES TO 2048</span><i>★</i>
+      <span>NO ADS · NO TRACKERS · NO ACCOUNTS</span><i>★</i>
+      <span>SCORES LIVE IN YOUR BROWSER ONLY</span><i>★</i>
+      <span>PRINTED IN INK &amp; SIGNAL ORANGE</span><i>★</i>
+    </div>
+  </div>
+
+  <header class="masthead">
+    <a class="brand" href="index.html" aria-label="Paper Arcade home">
+      <span class="brand__mark" aria-hidden="true">PA</span>
+      <span class="brand__name">Paper<em>Arcade</em></span>
+    </a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" data-nav-toggle>
+      <span class="nav-toggle__line"></span>
+      <span class="visually-hidden">Menu</span>
+    </button>
+    <nav class="site-nav" id="site-nav" aria-label="Primary" data-nav>
+      <ul>
+        <li><a href="index.html" aria-current="page">Home</a></li>
+        <li><a href="lexicon.html">Lexicon</a></li>
+        <li><a href="drift.html">Drift</a></li>
+        <li><a href="minefield.html">Minefield</a></li>
+        <li><a href="pairs.html">Pairs</a></li>
+        <li><a href="signal.html">Signal</a></li>
+        <li><a href="stats.html">Stats</a></li>
+        <li><a href="about.html">Colophon</a></li>
+      </ul>
+      <button class="btn btn--ghost btn--small" type="button" data-theme-toggle>
+        <span class="btn__dot" aria-hidden="true"></span><span data-theme-label>Ink mode</span>
+      </button>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="hero" data-reveal-group>
+      <div class="hero__inner">
+        <p class="hero__eyebrow">Issue No. 01 &mdash; Fall 2026 &mdash; Free circulation</p>
+        <h1 class="hero__title">
+          <span class="hero__line"><span class="hero__word">Games</span></span>
+          <span class="hero__line hero__line--indent"><span class="hero__word">printed</span></span>
+          <span class="hero__line"><span class="hero__word hero__word--accent">fresh</span><span class="hero__word">daily</span></span>
+        </h1>
+        <p class="hero__lede">
+          Five small games, built by hand, set in a 1960s print shop.
+          No downloads, no accounts, no ads. Your scores are pressed into
+          your own browser and nobody else's.
+        </p>
+        <div class="hero__actions">
+          <a class="btn btn--primary" href="#lineup">Pull a game from the press</a>
+          <a class="btn btn--ghost" href="stats.html">Check your record</a>
+        </div>
+        <div class="hero__sticker" aria-hidden="true">
+          <span>FREE</span>
+          <span>TO</span>
+          <span>PLAY</span>
+        </div>
+      </div>
+      <div class="hero__plate" aria-hidden="true">
+        <div class="plate plate--lexicon"><b>LEX</b><span>5 LETTERS, 6 SHOTS</span></div>
+        <div class="plate plate--drift"><b>2K</b><span>MERGE TO 2048</span></div>
+        <div class="plate plate--mine"><b>!</b><span>CLEAR THE FIELD</span></div>
+        <div class="plate plate--pairs"><b>&#9670;&#9670;</b><span>FIND THE TWINS</span></div>
+        <div class="plate plate--signal"><b>&#9834;</b><span>ECHO THE TONES</span></div>
+      </div>
+    </section>
+
+    <section class="lineup" id="lineup" aria-labelledby="lineup-heading">
+      <div class="section-head" data-reveal>
+        <h2 id="lineup-heading">The lineup</h2>
+        <p>Five presses, each printing one game. Pick a machine and it starts immediately.</p>
+      </div>
+      <div class="lineup__grid">
+        <article class="game-card" data-reveal>
+          <div class="game-card__art game-card__art--lexicon" aria-hidden="true">
+            <span class="tile-demo">C</span><span class="tile-demo is-correct">R</span><span class="tile-demo">A</span><span class="tile-demo is-present">N</span><span class="tile-demo">E</span>
+          </div>
+          <h3><a href="lexicon.html">Lexicon</a></h3>
+          <p>A daily five-letter word, six guesses, printed letter by letter. The word changes at midnight, free play opens whenever.</p>
+          <p class="game-card__meta"><span>Word game</span><span>~5 min</span><span>Difficulty: steady</span></p>
+          <a class="btn btn--primary" href="lexicon.html">Play Lexicon</a>
+        </article>
+
+        <article class="game-card" data-reveal>
+          <div class="game-card__art game-card__art--drift" aria-hidden="true">
+            <span class="drift-demo drift-demo--a">2</span><span class="drift-demo drift-demo--b">4</span><span class="drift-demo drift-demo--c">8</span><span class="drift-demo drift-demo--d">16</span>
+          </div>
+          <h3><a href="drift.html">Drift</a></h3>
+          <p>Slide numbered plates across the bed and merge the ones that match. Every press doubles a tile. Stop at 2048 if you can.</p>
+          <p class="game-card__meta"><span>Puzzle</span><span>~10 min</span><span>Difficulty: quiet creep</span></p>
+          <a class="btn btn--primary" href="drift.html">Play Drift</a>
+        </article>
+
+        <article class="game-card" data-reveal>
+          <div class="game-card__art game-card__art--mine" aria-hidden="true">
+            <span class="mine-demo">.</span><span class="mine-demo is-num">1</span><span class="mine-demo is-flag">&#9873;</span><span class="mine-demo is-num">2</span><span class="mine-demo">.</span>
+          </div>
+          <h3><a href="minefield.html">Minefield</a></h3>
+          <p>Three sizes of paper, each seeded with hidden mines. Numbers count what touches them. One wrong tap and the whole sheet goes.</p>
+          <p class="game-card__meta"><span>Logic</span><span>~7 min</span><span>Difficulty: your pick</span></p>
+          <a class="btn btn--primary" href="minefield.html">Play Minefield</a>
+        </article>
+
+        <article class="game-card" data-reveal>
+          <div class="game-card__art game-card__art--pairs" aria-hidden="true">
+            <span class="pairs-demo">&#9733;</span><span class="pairs-demo">&#9670;</span><span class="pairs-demo">&#9824;</span><span class="pairs-demo">&#9884;</span>
+          </div>
+          <h3><a href="pairs.html">Pairs</a></h3>
+          <p>Printer's stamps are shuffled face down. Flip two at a time and clear the sheet in as few moves as you can spare.</p>
+          <p class="game-card__meta"><span>Memory</span><span>~4 min</span><span>Difficulty: easy to hard</span></p>
+          <a class="btn btn--primary" href="pairs.html">Play Pairs</a>
+        </article>
+
+        <article class="game-card" data-reveal>
+          <div class="game-card__art game-card__art--signal" aria-hidden="true">
+            <span class="signal-demo signal-demo--1"></span><span class="signal-demo signal-demo--2"></span>
+            <span class="signal-demo signal-demo--3"></span><span class="signal-demo signal-demo--4"></span>
+          </div>
+          <h3><a href="signal.html">Signal</a></h3>
+          <p>The machine taps a tone, then asks you to echo it back. Each round the sequence grows one note longer and the tempo climbs.</p>
+          <p class="game-card__meta"><span>Memory</span><span>~3 min</span><span>Difficulty: rising</span></p>
+          <a class="btn btn--primary" href="signal.html">Play Signal</a>
+        </article>
+      </div>
+    </section>
+
+    <section class="rules" aria-labelledby="rules-heading">
+      <div class="section-head section-head--tight" data-reveal>
+        <h2 id="rules-heading">House rules</h2>
+        <p>Short, boring, and worth reading once.</p>
+      </div>
+      <ol class="rules__grid">
+        <li data-reveal>
+          <h3>Nothing is collected</h3>
+          <p>Every score, streak, and best time is written to your browser's local storage. There is no server holding a copy, and clearing your browser data clears the record.</p>
+        </li>
+        <li data-reveal>
+          <h3>Nothing is sold</h3>
+          <p>No ads, no popups, no "premium" tier. The games end when you stop playing them, which is the correct behavior for games and, frankly, for most things.</p>
+        </li>
+        <li data-reveal>
+          <h3>Everything is readable</h3>
+          <p>Full keyboard support on every game, visible focus states, screen reader labels, and a reduced-motion mode that stills the whole press room when your OS asks for it.</p>
+        </li>
+        <li data-reveal>
+          <h3>Everything is inspectable</h3>
+          <p>Hand-written HTML, CSS, and JavaScript, no frameworks, no build step. The source is public, the comments are real, and the colophon lists the whole toolkit.</p>
+        </li>
+      </ol>
+    </section>
+
+    <section class="pressstrip" aria-hidden="true">
+      <div class="pressstrip__row">
+        <span>SET IN FRAUNCES &amp; SPACE MONO</span>
+        <span>&#9670;</span>
+        <span>INK NO. 191510</span>
+        <span>&#9670;</span>
+        <span>SIGNAL NO. E8511C</span>
+        <span>&#9670;</span>
+        <span>PAPER NO. F3EEE3</span>
+        <span>&#9670;</span>
+        <span>SET IN FRAUNCES &amp; SPACE MONO</span>
+        <span>&#9670;</span>
+        <span>INK NO. 191510</span>
+        <span>&#9670;</span>
+        <span>SIGNAL NO. E8511C</span>
+        <span>&#9670;</span>
+        <span>PAPER NO. F3EEE3</span>
+        <span>&#9670;</span>
+      </div>
+    </section>
+
+    <section class="colophon-teaser" aria-labelledby="colophon-heading">
+      <div class="colophon-teaser__text" data-reveal>
+        <h2 id="colophon-heading">From the colophon</h2>
+        <p>
+          Paper Arcade is one portfolio project among several, but the only one
+          that answers back when you poke it. The design language is borrowed
+          from job printers and riso studios: two inks, one paper, thick rules,
+          and type that does the talking. The motion is a single kinetic
+          headline and a lot of small, honest presses.
+        </p>
+        <a class="btn btn--ghost" href="about.html">Read the full colophon</a>
+      </div>
+      <div class="colophon-teaser__figures" aria-hidden="true" data-reveal>
+        <div class="figure figure--big"><b>5</b><span>games</span></div>
+        <div class="figure"><b>0</b><span>trackers</span></div>
+        <div class="figure"><b>100%</b><span>hand-typed</span></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="colophon">
+    <div class="colophon__brand">
+      <span class="brand__mark" aria-hidden="true">PA</span>
+      <p>Paper Arcade. Five games, one press sheet, no quarterly report.</p>
+    </div>
+    <nav class="colophon__nav" aria-label="Footer">
+      <a href="index.html">Home</a>
+      <a href="stats.html">Your stats</a>
+      <a href="about.html">Colophon</a>
+      <a href="https://github.com/stewiefeh/paper-arcade" rel="noopener" target="_blank">Source on GitHub</a>
+    </nav>
+    <p class="colophon__fine">Set in Fraunces and Space Mono. Hosted on Cloudflare Pages. Built by hand, 2026.</p>
+  </footer>
+
+  <script src="js/core.js"></script>
+</body>
+</html>

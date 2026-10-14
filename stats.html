@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Your record | Paper Arcade</title>
+  <meta name="description" content="The Paper Arcade record page: streaks, best scores, best times, and a fourteen-day play log, all read from your own browser. Nothing here was ever uploaded anywhere.">
+  <meta property="og:title" content="Your record | Paper Arcade">
+  <meta property="og:description" content="Streaks, bests, and a play log, read straight from your browser.">
+  <meta name="theme-color" content="#f3eee3">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,900;1,9..144,400&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+</head>
+<body data-page="stats">
+  <a class="skip" href="#main">Skip to content</a>
+
+  <div class="ticker ticker--thin" aria-hidden="true">
+    <div class="ticker__track">
+      <span>THE RECORD DESK</span><i>&#9733;</i>
+      <span>EVERY NUMBER BELOW CAME OUT OF YOUR BROWSER</span><i>&#9733;</i>
+      <span>NOTHING WAS EVER UPLOADED</span><i>&#9733;</i>
+      <span>RESET ANY TIME FROM THIS PAGE</span><i>&#9733;</i>
+      <span>THE RECORD DESK</span><i>&#9733;</i>
+      <span>EVERY NUMBER BELOW CAME OUT OF YOUR BROWSER</span><i>&#9733;</i>
+      <span>NOTHING WAS EVER UPLOADED</span><i>&#9733;</i>
+      <span>RESET ANY TIME FROM THIS PAGE</span><i>&#9733;</i>
+    </div>
+  </div>
+
+  <header class="masthead">
+    <a class="brand" href="index.html" aria-label="Paper Arcade home">
+      <span class="brand__mark" aria-hidden="true">PA</span>
+      <span class="brand__name">Paper<em>Arcade</em></span>
+    </a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" data-nav-toggle>
+      <span class="nav-toggle__line"></span>
+      <span class="visually-hidden">Menu</span>
+    </button>
+    <nav class="site-nav" id="site-nav" aria-label="Primary" data-nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="lexicon.html">Lexicon</a></li>
+        <li><a href="drift.html">Drift</a></li>
+        <li><a href="minefield.html">Minefield</a></li>
+        <li><a href="pairs.html">Pairs</a></li>
+        <li><a href="signal.html">Signal</a></li>
+        <li><a href="stats.html" aria-current="page">Stats</a></li>
+        <li><a href="about.html">Colophon</a></li>
+      </ul>
+      <button class="btn btn--ghost btn--small" type="button" data-theme-toggle>
+        <span class="btn__dot" aria-hidden="true"></span><span data-theme-label>Ink mode</span>
+      </button>
+    </nav>
+  </header>
+
+  <main id="main">
+    <header class="game-header" data-reveal>
+      <p class="game-header__kicker">The record desk</p>
+      <h1>Your record</h1>
+      <p class="game-header__lede">
+        Everything the arcade knows about you, printed back to you. These
+        numbers were written by your own browser as you played, and no copy
+        exists anywhere else. Wipe the desk whenever you want.
+      </p>
+      <div class="hero__actions">
+        <button class="btn btn--ghost" type="button" id="wipe">Wipe the whole record</button>
+      </div>
+    </header>
+
+    <section class="stats-total" data-reveal aria-label="Totals">
+      <div class="figure figure--big"><b id="total-plays">0</b><span>games played</span></div>
+      <div class="figure"><b id="total-today">0</b><span>today</span></div>
+      <div class="figure"><b id="total-best-game">&ndash;</b><span>most played</span></div>
+      <div class="figure"><b id="total-days">0</b><span>days in the press room</span></div>
+    </section>
+
+    <section class="stats-grid" aria-label="Per game records">
+      <article class="panel stats-panel" id="panel-lexicon" data-reveal>
+        <h2 class="panel__title">Lexicon</h2>
+        <dl class="stat-strip">
+          <div><dt>Current streak</dt><dd id="lex-streak">0</dd></div>
+          <div><dt>Best streak</dt><dd id="lex-max">0</dd></div>
+          <div><dt>Win rate</dt><dd id="lex-win">&ndash;</dd></div>
+        </dl>
+        <canvas id="lex-chart" height="130" aria-label="Lexicon guess distribution"></canvas>
+        <a class="panel__link" href="lexicon.html">Open the word desk</a>
+      </article>
+
+      <article class="panel stats-panel" id="panel-drift" data-reveal>
+        <h2 class="panel__title">Drift</h2>
+        <dl class="stat-strip">
+          <div><dt>Best score</dt><dd id="drift-best">0</dd></div>
+          <div><dt>Top plate</dt><dd id="drift-top">&ndash;</dd></div>
+          <div><dt>Runs finished</dt><dd id="drift-runs">0</dd></div>
+        </dl>
+        <canvas id="drift-chart" height="130" aria-label="Your last Drift scores"></canvas>
+        <a class="panel__link" href="drift.html">Open the plate room</a>
+      </article>
+
+      <article class="panel stats-panel" id="panel-minefield" data-reveal>
+        <h2 class="panel__title">Minefield</h2>
+        <dl class="stat-strip stat-strip--stack">
+          <div><dt>Small sheet best</dt><dd id="mine-small">&ndash;</dd></div>
+          <div><dt>Standard sheet best</dt><dd id="mine-medium">&ndash;</dd></div>
+          <div><dt>Broadside best</dt><dd id="mine-large">&ndash;</dd></div>
+        </dl>
+        <p class="panel__note" id="mine-sheets">Sheets cleared: 0</p>
+        <a class="panel__link" href="minefield.html">Open the proof room</a>
+      </article>
+
+      <article class="panel stats-panel" id="panel-pairs" data-reveal>
+        <h2 class="panel__title">Pairs</h2>
+        <dl class="stat-strip stat-strip--stack">
+          <div><dt>Small sheet best</dt><dd id="pairs-small">&ndash;</dd></div>
+          <div><dt>Big sheet best</dt><dd id="pairs-large">&ndash;</dd></div>
+          <div><dt>Sheets cleared</dt><dd id="pairs-cleared">0</dd></div>
+        </dl>
+        <a class="panel__link" href="pairs.html">Open the stamp drawer</a>
+      </article>
+
+      <article class="panel stats-panel" id="panel-signal" data-reveal>
+        <h2 class="panel__title">Signal</h2>
+        <dl class="stat-strip">
+          <div><dt>Best round</dt><dd id="sig-best">0</dd></div>
+          <div><dt>Runs</dt><dd id="sig-runs">0</dd></div>
+          <div><dt>Strict wins</dt><dd id="sig-strict">0</dd></div>
+        </dl>
+        <canvas id="signal-chart" height="130" aria-label="Your best Signal round by day"></canvas>
+        <a class="panel__link" href="signal.html">Open the tone bench</a>
+      </article>
+
+      <article class="panel stats-panel" id="panel-log" data-reveal>
+        <h2 class="panel__title">Last 14 days</h2>
+        <canvas id="log-chart" height="170" aria-label="Games played per day over the last two weeks"></canvas>
+        <p class="panel__note" id="log-note">Every bar is a day you played at least one game.</p>
+      </article>
+    </section>
+  </main>
+
+  <footer class="colophon">
+    <div class="colophon__brand">
+      <span class="brand__mark" aria-hidden="true">PA</span>
+      <p>Paper Arcade. Five games, one press sheet, no quarterly report.</p>
+    </div>
+    <nav class="colophon__nav" aria-label="Footer">
+      <a href="index.html">Home</a>
+      <a href="stats.html">Your stats</a>
+      <a href="about.html">Colophon</a>
+      <a href="https://github.com/stewiefeh/paper-arcade" rel="noopener" target="_blank">Source on GitHub</a>
+    </nav>
+    <p class="colophon__fine">Set in Fraunces and Space Mono. Hosted on Cloudflare Pages. Built by hand, 2026.</p>
+  </footer>
+
+  <script src="js/core.js"></script>
+  <script src="js/stats.js"></script>
+</body>
+</html>

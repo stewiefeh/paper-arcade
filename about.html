@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Colophon: how Paper Arcade was made | Paper Arcade</title>
+  <meta name="description" content="The Paper Arcade colophon: the design system, the type, the motion rules, the privacy stance, and the full changelog of the build, written down the way a print shop keeps records.">
+  <meta property="og:title" content="Colophon: how Paper Arcade was made | Paper Arcade">
+  <meta property="og:description" content="The design system, the type, the motion rules, and the changelog.">
+  <meta name="theme-color" content="#f3eee3">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,900;1,9..144,400&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+</head>
+<body data-page="about">
+  <a class="skip" href="#main">Skip to content</a>
+
+  <div class="ticker ticker--thin" aria-hidden="true">
+    <div class="ticker__track">
+      <span>THE COLOPHON</span><i>&#9733;</i>
+      <span>WHERE THE INK CAME FROM</span><i>&#9733;</i>
+      <span>WHO SET THE TYPE</span><i>&#9733;</i>
+      <span>WHAT MOVED AND WHY</span><i>&#9733;</i>
+      <span>THE COLOPHON</span><i>&#9733;</i>
+      <span>WHERE THE INK CAME FROM</span><i>&#9733;</i>
+      <span>WHO SET THE TYPE</span><i>&#9733;</i>
+      <span>WHAT MOVED AND WHY</span><i>&#9733;</i>
+    </div>
+  </div>
+
+  <header class="masthead">
+    <a class="brand" href="index.html" aria-label="Paper Arcade home">
+      <span class="brand__mark" aria-hidden="true">PA</span>
+      <span class="brand__name">Paper<em>Arcade</em></span>
+    </a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" data-nav-toggle>
+      <span class="nav-toggle__line"></span>
+      <span class="visually-hidden">Menu</span>
+    </button>
+    <nav class="site-nav" id="site-nav" aria-label="Primary" data-nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="lexicon.html">Lexicon</a></li>
+        <li><a href="drift.html">Drift</a></li>
+        <li><a href="minefield.html">Minefield</a></li>
+        <li><a href="pairs.html">Pairs</a></li>
+        <li><a href="signal.html">Signal</a></li>
+        <li><a href="stats.html">Stats</a></li>
+        <li><a href="about.html" aria-current="page">Colophon</a></li>
+      </ul>
+      <button class="btn btn--ghost btn--small" type="button" data-theme-toggle>
+        <span class="btn__dot" aria-hidden="true"></span><span data-theme-label>Ink mode</span>
+      </button>
+    </nav>
+  </header>
+
+  <main id="main">
+    <header class="game-header" data-reveal>
+      <p class="game-header__kicker">The colophon</p>
+      <h1>How this was printed</h1>
+      <p class="game-header__lede">
+        A colophon is the page at the back of a book where the printer admits
+        how the thing was made. Most websites skip it. This one keeps it,
+        because the choices are half the project.
+      </p>
+    </header>
+
+    <section class="colophon-body">
+      <article class="colophon-entry" data-reveal>
+        <h2>The idea</h2>
+        <p>
+          Paper Arcade borrows its look from job printers, riso studios, and
+          newspaper front pages: one paper color, two inks, thick rules, and
+          type that is allowed to be loud. It exists to prove a point that a
+          game site does not need a dark background and a neon glow to feel
+          alive. Everything here is hand-written HTML, CSS, and JavaScript.
+          No frameworks, no bundler, no build step. What you play is what
+          was typed.
+        </p>
+      </article>
+
+      <article class="colophon-entry" data-reveal>
+        <h2>The design system</h2>
+        <p>
+          Every color, gap, and duration on the site comes from a token at
+          the top of the stylesheet, which means changing one line changes
+          every page. Paper is <code>#f3eee3</code>. Ink is
+          <code>#191510</code>. The two accents are riso orange
+          <code>#e8511c</code> and press green <code>#2b6e62</code>, with a
+          mustard <code>#d9a514</code> for stamps. Borders are two pixels and
+          shadows are hard offsets, because soft blur belongs in a
+          photography app. Ink mode swaps paper and ink for anyone who plays
+          at night, and the swap is one attribute change, not a second
+          stylesheet.
+        </p>
+      </article>
+
+      <article class="colophon-entry" data-reveal>
+        <h2>The type</h2>
+        <p>
+          Two faces, as the rule allows: Fraunces for headlines, with its
+          optical size doing the heavy lifting at 900 weight, and Space Mono
+          for everything the machine says, which is most things. Space Mono
+          was chosen because a monospaced voice makes the games read like
+          forms and tickets rather than marketing. Body text is at least
+          16 pixels everywhere, line lengths are capped, and headlines use
+          real optical kerning from the font file rather than squishing.
+        </p>
+      </article>
+
+      <article class="colophon-entry" data-reveal>
+        <h2>The motion</h2>
+        <p>
+          The house rule on motion: small things move fast, big things move
+          once. Micro-interactions run 100 to 300 milliseconds on transforms
+          and opacity only, entrances stagger in as you scroll, the hero
+          headline gets exactly one kinetic moment, and page changes use the
+          browser's own view transitions where supported. Nothing loops
+          forever except the ticker, which earns it. If your system asks for
+          reduced motion, the whole press room stills: reveals snap in, the
+          ticker freezes, and only the game boards keep moving, because a
+          board that does not respond to input is broken, not calm.
+        </p>
+      </article>
+
+      <article class="colophon-entry" data-reveal>
+        <h2>The privacy stance</h2>
+        <p>
+          There is no backend, no analytics script, no cookie banner, and no
+          account. Scores live in your browser's local storage under a
+          shared prefix so the record desk can find them, and the wipe button
+          on the stats page removes all of it in one go. The site would work
+          identically served from a floppy disk.
+        </p>
+      </article>
+
+      <article class="colophon-entry" data-reveal>
+        <h2>The changelog</h2>
+        <ul class="changelog">
+          <li><span>v1.0</span><b>First print run.</b> Five games, the record desk, ink mode, shared sound engine, undo in Drift, strict mode in Signal, first-click-safe Minefield on all three sheet sizes.</li>
+          <li><span>v0.9</span><b>Proof pass.</b> Keyboard support on every pad and board, focus states redrawn, long-press flagging added for touch, tile motion moved to transforms only.</li>
+          <li><span>v0.8</span><b>Type pass.</b> Fraunces locked for display, Space Mono for UI, ticker rebuilt as a single keyframe loop, hero headline given its one kinetic moment.</li>
+          <li><span>v0.7</span><b>Foundation.</b> Token system, paper texture, halftone overlay, masthead, and the game card lineup.</li>
+        </ul>
+      </article>
+
+      <article class="colophon-entry" data-reveal>
+        <h2>The credits</h2>
+        <p>
+          Concept, design, code, and all words: the Paper Arcade shop floor.
+          Type: Fraunces and Space Mono from Google Fonts. Hosting:
+          Cloudflare Pages. Source: <a href="https://github.com/stewiefeh/paper-arcade" rel="noopener" target="_blank">github.com/stewiefeh/paper-arcade</a>.
+          Errors in the dictionary are the compositor's own.
+        </p>
+      </article>
+    </section>
+  </main>
+
+  <footer class="colophon">
+    <div class="colophon__brand">
+      <span class="brand__mark" aria-hidden="true">PA</span>
+      <p>Paper Arcade. Five games, one press sheet, no quarterly report.</p>
+    </div>
+    <nav class="colophon__nav" aria-label="Footer">
+      <a href="index.html">Home</a>
+      <a href="stats.html">Your stats</a>
+      <a href="about.html">Colophon</a>
+      <a href="https://github.com/stewiefeh/paper-arcade" rel="noopener" target="_blank">Source on GitHub</a>
+    </nav>
+    <p class="colophon__fine">Set in Fraunces and Space Mono. Hosted on Cloudflare Pages. Built by hand, 2026.</p>
+  </footer>
+
+  <script src="js/core.js"></script>
+</body>
+</html>

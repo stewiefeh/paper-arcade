@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Drift: merge your way to 2048 | Paper Arcade</title>
+  <meta name="description" content="Drift is Paper Arcade's tile-sliding puzzle. Slide plates, merge matching numbers, and push toward 2048. One undo, best score saved locally, keyboard and touch both welcome.">
+  <meta property="og:title" content="Drift: merge your way to 2048 | Paper Arcade">
+  <meta property="og:description" content="Slide plates, merge matching numbers, push toward 2048.">
+  <meta name="theme-color" content="#f3eee3">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,900;1,9..144,400&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+</head>
+<body data-page="drift">
+  <a class="skip" href="#main">Skip to content</a>
+
+  <div class="ticker ticker--thin" aria-hidden="true">
+    <div class="ticker__track">
+      <span>DRIFT PRESS NO. 2</span><i>&#9733;</i>
+      <span>EVERY MOVE DOUBLES SOMETHING</span><i>&#9733;</i>
+      <span>ARROWS, WASD, OR A SWIPE</span><i>&#9733;</i>
+      <span>ONE UNDO PER RUN</span><i>&#9733;</i>
+      <span>DRIFT PRESS NO. 2</span><i>&#9733;</i>
+      <span>EVERY MOVE DOUBLES SOMETHING</span><i>&#9733;</i>
+      <span>ARROWS, WASD, OR A SWIPE</span><i>&#9733;</i>
+      <span>ONE UNDO PER RUN</span><i>&#9733;</i>
+    </div>
+  </div>
+
+  <header class="masthead">
+    <a class="brand" href="index.html" aria-label="Paper Arcade home">
+      <span class="brand__mark" aria-hidden="true">PA</span>
+      <span class="brand__name">Paper<em>Arcade</em></span>
+    </a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" data-nav-toggle>
+      <span class="nav-toggle__line"></span>
+      <span class="visually-hidden">Menu</span>
+    </button>
+    <nav class="site-nav" id="site-nav" aria-label="Primary" data-nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="lexicon.html">Lexicon</a></li>
+        <li><a href="drift.html" aria-current="page">Drift</a></li>
+        <li><a href="minefield.html">Minefield</a></li>
+        <li><a href="pairs.html">Pairs</a></li>
+        <li><a href="signal.html">Signal</a></li>
+        <li><a href="stats.html">Stats</a></li>
+        <li><a href="about.html">Colophon</a></li>
+      </ul>
+      <button class="btn btn--ghost btn--small" type="button" data-theme-toggle>
+        <span class="btn__dot" aria-hidden="true"></span><span data-theme-label>Ink mode</span>
+      </button>
+    </nav>
+  </header>
+
+  <main id="main" class="game-main">
+    <header class="game-header" data-reveal>
+      <p class="game-header__kicker">Press No. 2 &mdash; The plate room</p>
+      <h1>Drift</h1>
+      <p class="game-header__lede">
+        Numbered plates slide until they hit a wall or another plate. Two
+        plates with the same number merge into their sum. Fill the bed with
+        plates that cannot move and the run is over. The press recognizes a
+        2048 plate, but you are welcome to keep printing.
+      </p>
+    </header>
+
+    <div class="game-layout game-layout--board-first">
+      <section class="drift-stage" aria-label="Drift board">
+        <div class="drift-hud">
+          <div class="drift-score">
+            <span class="drift-score__label">Score</span>
+            <span class="drift-score__value" id="score">0</span>
+            <span class="drift-score__delta" id="score-delta" aria-hidden="true"></span>
+          </div>
+          <div class="drift-score">
+            <span class="drift-score__label">Best</span>
+            <span class="drift-score__value" id="best">0</span>
+          </div>
+          <div class="drift-controls">
+            <button class="btn btn--ghost btn--small" type="button" id="undo" disabled>Undo</button>
+            <button class="btn btn--primary btn--small" type="button" id="restart">New run</button>
+          </div>
+        </div>
+        <div class="drift-bed" id="bed" aria-label="Game grid, 4 by 4" role="grid">
+          <div class="drift-bed__cells" aria-hidden="true">
+            <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+          </div>
+          <div class="drift-bed__tiles" id="tiles"></div>
+        </div>
+        <div class="board-overlay" id="drift-overlay" hidden>
+          <p class="board-overlay__title" id="drift-overlay-title">The bed is jammed</p>
+          <p class="board-overlay__word" id="drift-overlay-score">Score 0</p>
+          <p class="board-overlay__note" id="drift-overlay-note">Best score stays on your record.</p>
+          <div class="board-overlay__actions">
+            <button class="btn btn--primary" type="button" id="drift-again">Press again</button>
+          </div>
+        </div>
+      </section>
+
+      <aside class="game-side" aria-label="Drift help and record">
+        <div class="panel">
+          <h2 class="panel__title">The controls</h2>
+          <ul class="panel__list">
+            <li><b>Arrow keys or WASD</b> slide every plate at once.</li>
+            <li><b>Swipe</b> on a touch screen does the same job.</li>
+            <li><b>Undo</b> rolls back exactly one move, once per run.</li>
+            <li><b>2048</b> ends the celebration, not the run, if you want to keep going.</li>
+          </ul>
+        </div>
+        <div class="panel">
+          <h2 class="panel__title">Today's record</h2>
+          <dl class="stat-strip">
+            <div><dt>Best score</dt><dd id="stat-best">0</dd></div>
+            <div><dt>Top plate</dt><dd id="stat-top">&ndash;</dd></div>
+            <div><dt>Runs</dt><dd id="stat-runs">0</dd></div>
+          </dl>
+          <p class="panel__fine">A run counts in your record when it ends, win or jam.</p>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <footer class="colophon">
+    <div class="colophon__brand">
+      <span class="brand__mark" aria-hidden="true">PA</span>
+      <p>Paper Arcade. Five games, one press sheet, no quarterly report.</p>
+    </div>
+    <nav class="colophon__nav" aria-label="Footer">
+      <a href="index.html">Home</a>
+      <a href="stats.html">Your stats</a>
+      <a href="about.html">Colophon</a>
+      <a href="https://github.com/stewiefeh/paper-arcade" rel="noopener" target="_blank">Source on GitHub</a>
+    </nav>
+    <p class="colophon__fine">Set in Fraunces and Space Mono. Hosted on Cloudflare Pages. Built by hand, 2026.</p>
+  </footer>
+
+  <script src="js/core.js"></script>
+  <script src="js/drift.js"></script>
+</body>
+</html>
